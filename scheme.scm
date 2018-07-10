@@ -236,7 +236,7 @@
 )
 
 ;Return the max deep of the list
-define (deep List)
+(define (deep List)
     (cond
         ((null? List) 1)
         ((not(list? List)) 0)
