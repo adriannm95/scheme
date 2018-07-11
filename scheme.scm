@@ -374,3 +374,42 @@
     (else (cons (car L) (midAux (cdr L) (+ 1 actu ) ( - longi 1))))
     )
 )
+(define (ordenada L)
+    (cond
+        ((null? L)#t)
+        ((null? (cdr L))#t)
+        ((<= (car L) (cadr L)) (ordenada (cdr L)))
+        (else #f)
+    )
+)
+
+
+(define (quitaRepetidos L)
+    (cond
+        ((null? L)'())
+        ((null? (cdr L))(list (car L)))
+        ((equal? (car L) (cadr L)) (quitaRepetidos(cdr L)))
+        (else ( cons (car L) (quitaRepetidos (cdr L))))
+    )
+)
+
+
+(define (count L  E)
+    (containsC (flattenC L) E)
+)
+
+(define (flattenC L)
+     (cond
+        ((null? L)'())
+        ((list? (car L))(append (flattenC (car L)) (flattenC (cdr L))))
+        (else (cons (car L) (flattenC(cdr L))))
+    )
+)
+
+(define (containsC L E)
+    (cond
+        ((null? L)0)
+        ((equal? (car L ) E) (+ (containsC (cdr L) E) 1))
+        (else (containsC (cdr L) E))
+    )
+)
